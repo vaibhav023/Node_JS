@@ -1,0 +1,17 @@
+version: 0.2
+
+env: 
+   
+   parameter-store:
+                Mongo_Url: "/vai/mongo_url"
+
+phases:
+  pre_build:
+    commands:
+      - npm install
+  build:
+    commands:
+      - sed -i "s/localhost/"$Mongo_Url"/" app.js
+artifacts:
+  files:
+    - '**/*'
